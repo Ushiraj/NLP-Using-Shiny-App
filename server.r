@@ -44,6 +44,8 @@ shinyServer(function(input, output) {
   
   output$plot1 <- renderPlot({ 
 	  #windowsFonts(devanew=windowsFont("Devanagari new normal"))
+	if (is.null(input$file1)) { return(NULL) }
+	else {
     wordnetwork <- head(data_cooc(), 50)
     wordnetwork <- igraph::graph_from_data_frame(wordnetwork)
     
@@ -61,7 +63,7 @@ shinyServer(function(input, output) {
       labs(title = "Cooccurrences within 3 words distance", subtitle = "Based on selected parts of speech")   
   })
   
-    
+         }
   })
   
   
